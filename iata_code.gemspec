@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = IATACode::VERSION
   spec.authors       = ["Klaus Hartl"]
   spec.email         = ["kh@waymate.de"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Automate finding IATA codes from their search page.}
+  spec.description   = ""
   spec.homepage      = ""
   spec.license       = "MIT"
 
