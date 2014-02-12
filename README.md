@@ -1,29 +1,26 @@
 # IATACode
 
-TODO: Write a gem description
+Automate finding IATA codes from their search page.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'iata_code'
-
-And then execute:
+After cloning repository:
 
     $ bundle
-
-Or install it yourself as:
-
-    $ gem install iata_code
+    $ bundle exec rake install
 
 ## Usage
 
-TODO: Write usage instructions here
+CLI: search IATA codes by given airline name
 
-## Contributing
+    $ iata_code find lufthansa
+    Deutsche Lufthansa AG: LH
+    Lufthansa Cargo AG: LH
+    Lufthansa CityLine GmbH: CL
+    Lufthansa Systems AG: S1
+    
+Plain Ruby:
 
-1. Fork it ( http://github.com/<my-github-username>/iata_code/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+```ruby
+result = IATACode::Scraper.new.scrape("lufthansa") // => {"Deutsche Lufthansa AG"=>"LH", "Lufthansa Cargo AG"=>"LH", "Lufthansa CityLine GmbH"=>"CL", "Lufthansa Systems AG"=>"S1"}
+```
