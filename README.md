@@ -2,6 +2,8 @@
 
 Automate finding IATA codes from their search page.
 
+http://www.iata.org/publications/Pages/code-search.aspx
+
 ## Installation
 
 After cloning repository:
@@ -11,7 +13,9 @@ After cloning repository:
 
 ## Usage
 
-CLI: search IATA codes by given airline name
+Search IATA codes by given airline name.
+
+CLI: 
 
     $ iata_code find lufthansa
     Deutsche Lufthansa AG: LH
