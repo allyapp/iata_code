@@ -3,5 +3,5 @@
 # Exit cleanly from an early interrupt
 Signal.trap("INT") { exit 1 }
 
-require 'iata_codes'
-IATACodes::CLI.start(ARGV)
+require 'iata_code'
+IATACode::CLI.start(ARGV)

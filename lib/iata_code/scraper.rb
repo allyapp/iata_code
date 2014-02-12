@@ -10,7 +10,7 @@ Capybara.default_wait_time = 10
 Capybara.run_server = false
 Capybara.app_host = "http://www.iata.org"
 
-module IATACodes
+module IATACode
   class CapybaraEngine
     include Capybara::DSL
 
