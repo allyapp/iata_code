@@ -26,5 +26,5 @@ CLI:
 Plain Ruby:
 
 ```ruby
-result = IATACode::Scraper.new.scrape("lufthansa") // => {"Deutsche Lufthansa AG"=>"LH", "Lufthansa Cargo AG"=>"LH", "Lufthansa CityLine GmbH"=>"CL", "Lufthansa Systems AG"=>"S1"}
+IATACode.lookup("lufthansa") // => {"Deutsche Lufthansa AG"=>"LH", "Lufthansa Cargo AG"=>"LH", "Lufthansa CityLine GmbH"=>"CL", "Lufthansa Systems AG"=>"S1"}
 ```
