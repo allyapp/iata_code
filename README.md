@@ -1,6 +1,6 @@
 # IATACode
 
-Automate finding IATA codes from their search page.
+Automate finding IATA codes/airlines from their search page.
 
 http://www.iata.org/publications/Pages/code-search.aspx
 
@@ -13,7 +13,7 @@ After cloning repository:
 
 ## Usage
 
-Search IATA codes by given airline name.
+Search IATA codes by given airline name (also partial) or code:
 
 CLI: 
 
@@ -22,6 +22,9 @@ CLI:
     Lufthansa Cargo AG: LH
     Lufthansa CityLine GmbH: CL
     Lufthansa Systems AG: S1
+    
+    $ iata_code find SK
+    Scandinavian Airlines System (SAS): SK
     
 Plain Ruby:
 

@@ -14,18 +14,25 @@ module IATACode
   class CapybaraEngine
     include Capybara::DSL
 
-    def scrape(url, airline_name)
-      @results ||= query_results(url, airline_name)
+    def scrape(url, airline_name_or_code)
+      @results ||= query_results(url, airline_name_or_code)
     end
 
     private
 
-    def query_results(url, name)
+    def query_results(url, term)
       visit(url)
-      choose_search_by_airline_name
-      enter_airline_name(name)
+
+      if is_code?(term)
+        choose_search_by_airline_code
+        enter_airline_code(term)
+      else
+        choose_search_by_airline_name
+        enter_airline_name(term)
+      end
+
       submit_form
-      wait_for_results(name)
+      wait_for_results(term)
       parse_results
     rescue Capybara::ElementNotFound => e
       puts "#{e}"
@@ -35,17 +42,22 @@ module IATACode
       select("Airline name", from: find(".ajaxForm select")[:id])
     end
 
+    def choose_search_by_airline_code
+      select("IATA Airline code", from: find(".ajaxForm select")[:id])
+    end
+
     def enter_airline_name(name)
       fill_in(find(".ajaxForm input[type=text]")[:id], :with => name)
     end
+    alias :enter_airline_code :enter_airline_name
 
     def submit_form
       find(".ajaxForm input[type=submit]").click
     end
 
-    def wait_for_results(name)
+    def wait_for_results(term)
       # Either 'No results for "Foo"' or 'Search results for "Foo"'
-      page.has_content?("results for \"#{name}\"")
+      page.has_content?("results for \"#{term}\"")
     end
 
     def parse_results
@@ -68,6 +80,10 @@ module IATACode
       page.save_screenshot("/tmp/capybara.png", options)
       `open /tmp/capybara.png`
     end
+
+    def is_code?(term)
+      !!(term =~ /\A[A-Z0-9]{2}\Z/)
+    end
   end
 
   class Scraper
@@ -77,8 +93,8 @@ module IATACode
       @strategy = configuration[:strategy] || CapybaraEngine.new
     end
 
-    def scrape(airline_name)
-      @strategy.scrape(url, airline_name)
+    def scrape(airline_name_or_code)
+      @strategy.scrape(url, airline_name_or_code)
     end
 
     private
