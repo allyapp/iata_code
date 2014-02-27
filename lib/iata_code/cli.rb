@@ -2,7 +2,7 @@ require "thor"
 
 module IATACode
   class CLI < Thor
-    desc "find NAME", "find IATA codes by airline name"
+    desc "find NAME", "look up IATA codes by airline name, or an airline by a given code"
     def find(name)
       result = IATACode.lookup(name)
 
